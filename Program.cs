@@ -18,6 +18,13 @@ namespace oldsl_nick_setter
                 Console.WriteLine("Please write your desired nickname.");
                 string nick = Console.ReadLine();
 
+                if (nick == null || nick == string.Empty || nick.Length == 0)
+                {
+                    Console.WriteLine("Passing an empty name may cause issues, or even being banned when joining a server!\nMake sure to enter a valid non-empty name with no special characters.");
+                    Console.Read();
+                    return;
+                }
+
                 using (RegistryKey key = Registry.CurrentUser.OpenSubKey(subKeyName, true))
                 {
                     if (key != null)
