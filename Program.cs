@@ -13,17 +13,16 @@ namespace oldsl_nick_setter
 
         static void Main(string[] args)
         {
-            ConsoleColor oldColor = Console.ForegroundColor;
-
             try
             {
                 Console.WriteLine("Please write your desired nickname.");
                 string nick = Console.ReadLine();
 
-                if (nick == null || nick == string.Empty || nick.Length == 0)
+                if (string.IsNullOrWhiteSpace(nick) || nick.Length < 3)
                 {
-                    Console.WriteLine("Passing an empty name may cause issues, or even being banned when joining a server!\nMake sure to enter a valid non-empty name with no special characters.");
-                    Console.Read();
+                    WriteLineColor("The entered nickname is not allowed. Make sure the nickname consists of atleast 3 characters and is not whitespace only.", ConsoleColor.Magenta);
+                    Console.WriteLine("\nPress any key to exit.");
+                    Console.ReadKey();
                     return;
                 }
 
