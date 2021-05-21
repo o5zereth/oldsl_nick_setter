@@ -13,6 +13,8 @@ namespace oldsl_nick_setter
 
         static void Main(string[] args)
         {
+            ConsoleColor oldColor = Console.ForegroundColor;
+
             try
             {
                 Console.WriteLine("Please write your desired nickname.");
@@ -60,14 +62,23 @@ namespace oldsl_nick_setter
                 Registry.SetValue(keyName, "nickname", Encoding.ASCII.GetBytes(nick));
                 Registry.SetValue(keyName_2, "nickname", Encoding.ASCII.GetBytes(nick));
 
-                Console.Write("Nickname set succssfully!");
+                WriteLineColor("Nickname set succssfully!", ConsoleColor.Green);
             }
             catch (Exception e)
             {
-                Console.WriteLine("Error: \n" + e.Message);
+                WriteLineColor(e.ToString(), ConsoleColor.DarkRed);
             }
 
-            Console.Read();
+            Console.WriteLine("\nPress any key to exit.");
+            Console.ReadKey();
+        }
+
+        static void WriteLineColor(string text, ConsoleColor color)
+        {
+            ConsoleColor oldColor = Console.ForegroundColor;
+            Console.ForegroundColor = color;
+            Console.WriteLine(text);
+            Console.ForegroundColor = oldColor;
         }
     }
 }
