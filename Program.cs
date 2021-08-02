@@ -22,7 +22,7 @@ namespace oldsl_nick_setter
                 Console.WriteLine("Please write your desired nickname.");
                 string nick = Console.ReadLine();
 
-                // Get the number of total whitespace characters.
+                // Get the number of total non-whitespace characters.
                 int totalNonWhiteSpace = 0;
                 for (int i = 0; i < nick.Length; i++)
                 {
